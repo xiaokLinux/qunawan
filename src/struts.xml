@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.i18n.encoding" value="utf-8" />  
+    <package name="user" namespace="/" extends="struts-default">
+		<action name="login" class="loginAction">
+			<result name="success">/redirect.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		
+		<action name="index" class="indexAction">
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<action name="person" class="personalAction">
+			<result name="success">/personal.jsp</result>
+		</action>
+    </package>
+    
+    <package name="ajax" namespace="/" extends="json-default">
+		<action name="ajax" class="ajaxAction">
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+				<param name="root">data</param>
+			</result>
+		</action>
+	</package>
+</struts>

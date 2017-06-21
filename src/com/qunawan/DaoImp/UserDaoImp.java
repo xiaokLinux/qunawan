@@ -54,5 +54,22 @@ public class UserDaoImp implements UserDao {
 		// TODO Auto-generated method stub
 		return (User) hibernateTemplate.find("FROM User u WHERE u.phone = " + phone).get(0);
 	}
+	@Override
+	public User findUserById(int id) {
+		// TODO Auto-generated method stub
+		return hibernateTemplate.get(User.class, id);
+	}
+	@Override
+	public boolean updatePassword(int id, String old_password, String new_password) {
+		// TODO Auto-generated method stub
+		User user = findUserById(id);
+		
+		if (user.getPassword().equals(MD5Utils.toMD5(old_password))) {
+			user.setPassword(MD5Utils.toMD5(new_password));
+			hibernateTemplate.saveOrUpdate(user);
+			return true;
+		}
+		return false;
+	}
 
 }

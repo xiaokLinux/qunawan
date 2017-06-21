@@ -24,7 +24,16 @@ public class PersonalAction extends ActionSupport {
 	private UserService userService;
 	private List<City> provinces;
 	private User user;
+	private String err_msg;
 	
+	public String getErr_msg() {
+		return err_msg;
+	}
+
+	public void setErr_msg(String err_msg) {
+		this.err_msg = err_msg;
+	}
+
 	public User getUser() {
 		return user;
 	}
@@ -60,21 +69,32 @@ public class PersonalAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	public String updatePass() {
+		User userSession = (User) ActionContext.getContext().getSession().get("user");
+		String old_password = ServletActionContext.getRequest().getParameter("oldPassWord");
+		String new_password = ServletActionContext.getRequest().getParameter("newPassWord");
+
+		if (!userService.updatePassword(userSession.getId(), old_password, new_password)) {
+			setErr_msg("密码错误");
+		}
+		return SUCCESS;
+	}
+	
 	public void addActionError(String anErrorMessage){
-		   String s=anErrorMessage;
-		   System.out.println(s);
-		  }
-		  public void addActionMessage(String aMessage){
-		   String s=aMessage;
-		   System.out.println(s);
+		String s=anErrorMessage;
+		System.out.println(s);
+	}
+	public void addActionMessage(String aMessage){
+		String s=aMessage;
+		System.out.println(s);
 		 
-		  }
-		  public void addFieldError(String fieldName, String errorMessage){
-		   String s=errorMessage;
-		   String f=fieldName;
-		   System.out.println(s);
-		   System.out.println(f);
+	}
+	public void addFieldError(String fieldName, String errorMessage){
+		String s=errorMessage;
+		String f=fieldName;
+		System.out.println(s);
+		System.out.println(f);
 		 
-		  }
+	}
 	
 }

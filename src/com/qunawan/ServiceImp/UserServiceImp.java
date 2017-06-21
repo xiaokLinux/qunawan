@@ -11,6 +11,7 @@ import com.qunawan.Dao.UserDao;
 import com.qunawan.Service.UserService;
 import com.qunawan.entity.City;
 import com.qunawan.entity.User;
+import com.qunawan.utils.MD5Utils;
 
 @Service
 @Transactional(propagation=Propagation.REQUIRED)
@@ -33,6 +34,11 @@ public class UserServiceImp implements UserService {
 		// TODO Auto-generated method stub
 		City c = cityDao.getCityById(city);
 		userDao.updateUser(user, c);
+	}
+	@Override
+	public boolean updatePassword(int id, String old_password, String new_password) {
+		// TODO Auto-generated method stub
+		return userDao.updatePassword(id, old_password, new_password);
 	}
 
 }

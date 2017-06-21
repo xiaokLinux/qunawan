@@ -25,11 +25,11 @@
 					<div class="personlist">
 						<ul class="p_ul">
 							<li><a
-								href="${pageContext.request.contextPath }/myorder.jhtml?type=init">我的订单</a></li>
+								href="${pageContext.request.contextPath }/personal_myOrder.jsp">我的订单</a></li>
 							<li><a
 								href="${pageContext.request.contextPath }/person">个人资料</a></li>
 							<li><a
-								href="${pageContext.request.contextPath }/updatepwd.jhtml?type=init">修改密码</a></li>
+								href="${pageContext.request.contextPath }/personal_passwordChange.jsp">修改密码</a></li>
 							<li><a
 								href="${pageContext.request.contextPath }/mycontact.jhtml?type=getContacts">常用游客</a></li>
 						</ul>
